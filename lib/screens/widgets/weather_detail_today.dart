@@ -10,12 +10,12 @@ class WeatherDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GlassmorphicContainer(
-      width: 350,
+      width: MediaQuery.of(context).size.width,
       height: 450,
       borderRadius: 20,
       blur: 20,
       alignment: Alignment.bottomCenter,
-      border: 2,
+      border: 0,
       linearGradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -31,23 +31,25 @@ class WeatherDetail extends StatelessWidget {
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
         colors: [
-          const Color(0xFFffffff).withOpacity(0.5),
-          const Color((0xFFFFFFFF)).withOpacity(0.5),
+          const Color(0xFFffffff).withOpacity(0.2),
+          const Color((0xFFFFFFFF)).withOpacity(0.2),
         ],
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 12.0),
         child: Column(
+
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            
             const Icon(
               WeatherIcons.day_rain,
               size: 80,
               color: Colors.white,
             ),
             const SizedBox(
-              height: 60,
+              height: 40,
             ),
             const Text(
               'Rainy',
