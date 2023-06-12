@@ -77,10 +77,13 @@ class NextFiveDays extends StatelessWidget {
                       horizontal: 20.0, vertical: 12.0),
                   child: Column(
                     children: [
+                      // CustomAppBar is a custom widget for appbar
                       const CustomAppBar(),
                       sizedBox,
+                      // TomorrowWeatherDetail is a custom widget for weather detail to display weather of tomorrow
                       const TomorrowWeatherDetail(),
                       sizedBox,
+                      //  Here we showed weather details of next 4 days
                       SizedBox(
                         height: 492,
                         child: ListView.separated(

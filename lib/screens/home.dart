@@ -14,7 +14,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  
+  // data for hourly weather
   List<Map<String, dynamic>> weatherDataHourly = [
     {
       'time': '00:00',
@@ -140,13 +140,10 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   centerTitle: true,
-      //   title:
-      // ),
       body: SizedBox(
         height: double.infinity,
         width: double.infinity,
+        // stack for background gradient
         child: Stack(
           children: [
             Container(
@@ -158,19 +155,11 @@ class _HomeState extends State<Home> {
                   end: Alignment.topRight,
                   colors: [
                     const Color(0xFF8F55D9).withOpacity(1),
-                    // const Color(0xFFD6C970).withOpacity(0.8),
                     const Color(0xFFDC8B4B).withOpacity(1),
                   ],
                 ),
               ),
             ),
-            // Image.network(
-            //   "https://github.com/RitickSaha/glassmophism/blob/master/example/assets/bg.png?raw=true",
-            //   fit: BoxFit.cover,
-            //   height: double.infinity,
-            //   width: double.infinity,
-            //   scale: 1,
-            // ),
             SafeArea(
               child: SingleChildScrollView(
                 child: Padding(
@@ -178,6 +167,7 @@ class _HomeState extends State<Home> {
                       horizontal: 20.0, vertical: 12.0),
                   child: Column(
                     children: [
+                      // Location to choose location
                       const Location(),
                       const SizedBox(
                         height: 20,
@@ -202,67 +192,14 @@ class _HomeState extends State<Home> {
                       const SizedBox(
                         height: 10,
                       ),
+                      // Weather detail widget to show weather details of today
                       const WeatherDetail(),
                       const SizedBox(
                         height: 20,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Today',
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w600),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => const NextFiveDays(),
-                                ),
-                              );
-                            },
-                            child: Row(
-                              children: [
-                                Text(
-                                  'Next 5 days',
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.white.withOpacity(0.8),
-                                  ),
-                                ),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 16,
-                                  color: Colors.white,
-                                )
-                              ],
-                            ),
-                          )
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      SizedBox(
-                        height: 120,
-                        child: ListView.separated(
-                            scrollDirection: Axis.horizontal,
-                            itemBuilder: (ctx, i) {
-                              return HourlyWeatherWidget(
-                                time: weatherDataHourly[i]['time'],
-                                icon: weatherDataHourly[i]['icon'],
-                                temp: weatherDataHourly[i]['temp'],
-                              );
-                            },
-                            separatorBuilder: (ctx, i) => const VerticalDivider(
-                                  color: Colors.transparent,
-                                  width: 10,
-                                ),
-                            itemCount: weatherDataHourly.length),
-                      ),
+                      // Hourly weather widget to show hourly weather
+                      WholeDayWeatherWidget(
+                          weatherDataHourly: weatherDataHourly),
                     ],
                   ),
                 ),
@@ -271,6 +208,79 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
+    );
+  }
+}
+
+class WholeDayWeatherWidget extends StatelessWidget {
+  const WholeDayWeatherWidget({
+    super.key,
+    required this.weatherDataHourly,
+  });
+
+  final List<Map<String, dynamic>> weatherDataHourly;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text(
+              'Today',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const NextFiveDays(),
+                  ),
+                );
+              },
+              child: Row(
+                children: [
+                  Text(
+                    'Next 5 days',
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white.withOpacity(0.8),
+                    ),
+                  ),
+                  const Icon(
+                    Icons.arrow_forward_ios,
+                    size: 16,
+                    color: Colors.white,
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+        const SizedBox(
+          height: 10,
+        ),
+        SizedBox(
+          height: 120,
+          child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (ctx, i) {
+                return HourlyWeatherWidget(
+                  time: weatherDataHourly[i]['time'],
+                  icon: weatherDataHourly[i]['icon'],
+                  temp: weatherDataHourly[i]['temp'],
+                );
+              },
+              separatorBuilder: (ctx, i) => const VerticalDivider(
+                    color: Colors.transparent,
+                    width: 10,
+                  ),
+              itemCount: weatherDataHourly.length),
+        ),
+      ],
     );
   }
 }
