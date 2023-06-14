@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:glassmorphism/glassmorphism.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:weather_app/screens/widgets/detail_icon.dart';
 import 'package:weather_icons/weather_icons.dart';
 
@@ -54,11 +55,17 @@ class NextFiveDays extends StatelessWidget {
                 gradient: LinearGradient(
                   begin: Alignment.bottomLeft,
                   end: Alignment.topRight,
-                  colors: [
-                    const Color(0xFF8F55D9).withOpacity(1),
-                    // const Color(0xFFD6C970).withOpacity(0.8),
-                    const Color(0xFFDC8B4B).withOpacity(1),
-                  ],
+                  colors: (int.parse(DateTime.now().hour.toString()) >= 20 &&
+                          int.parse(DateTime.now().hour.toString()) < 6)
+                      ? [
+                          const Color(0xFF071930).withOpacity(1),
+                          const Color(0xFF000B16).withOpacity(1),
+                        ]
+                      : [
+                          const Color(0xFF8F55D9).withOpacity(1),
+                          // const Color(0xFFD6C970).withOpacity(0.8),
+                          const Color(0xFFDC8B4B).withOpacity(1),
+                        ],
                 ),
               ),
             ),
@@ -104,14 +111,14 @@ class NextFiveDays extends StatelessWidget {
                                       text: TextSpan(
                                         text: "${next4Days[i]['day']}, "
                                             .toString(),
-                                        style: const TextStyle(
+                                        style: GoogleFonts.roboto(
                                           fontSize: 20,
                                           fontWeight: FontWeight.w500,
                                         ),
                                         children: [
                                           TextSpan(
                                             text: ' ${next4Days[i]['date']}',
-                                            style: const TextStyle(
+                                            style: GoogleFonts.roboto(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w400,
                                             ),
@@ -131,7 +138,7 @@ class NextFiveDays extends StatelessWidget {
                                         ),
                                         Text(
                                           next4Days[i]['weather'].toString(),
-                                          style: const TextStyle(
+                                          style: GoogleFonts.roboto(
                                             fontSize: 16,
                                             fontWeight: FontWeight.w400,
                                             color: Colors.white,
@@ -145,19 +152,19 @@ class NextFiveDays extends StatelessWidget {
                                           width: 40,
                                           child: Text(
                                             next4Days[i]['temp'].toString(),
-                                            style: const TextStyle(
+                                            style: GoogleFonts.roboto(
                                               fontSize: 16,
                                               fontWeight: FontWeight.w400,
                                               color: Colors.white,
                                             ),
                                           ),
                                         ),
-                                        const Positioned(
+                                        Positioned(
                                           top: 0,
                                           left: 22,
                                           child: Text(
                                             '°C',
-                                            style: TextStyle(
+                                            style: GoogleFonts.roboto(
                                               fontSize: 10,
                                               fontWeight: FontWeight.w400,
                                             ),
@@ -203,11 +210,11 @@ class CustomAppBar extends StatelessWidget {
               color: Colors.white,
             ),
           ),
-          const Expanded(
+          Expanded(
             child: Text(
               'Next 5 Days',
               textAlign: TextAlign.center,
-              style: TextStyle(
+              style: GoogleFonts.roboto(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
                 color: Colors.white,
@@ -265,20 +272,20 @@ class TomorrowWeatherDetail extends StatelessWidget {
               children: [
                 Row(
                   // crossAxisAlignment: CrossAxisAlignment.end,
-                  children: const [
+                  children: [
                     Text(
                       'Tomorrow',
-                      style: TextStyle(
+                      style: GoogleFonts.roboto(
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10,
                     ),
                     Text(
                       'Wed Dec 29',
-                      style: TextStyle(
+                      style: GoogleFonts.roboto(
                         fontSize: 10,
                         fontWeight: FontWeight.w400,
                       ),
@@ -289,16 +296,17 @@ class TomorrowWeatherDetail extends StatelessWidget {
                   height: 20,
                 ),
                 Stack(
-                  children: const [
+                  children: [
                     SizedBox(
                         width: 140,
-                        child: Text('25', style: TextStyle(fontSize: 40))),
+                        child: Text('25',
+                            style: GoogleFonts.roboto(fontSize: 40))),
                     Positioned(
                       top: 0,
                       left: 60,
                       child: Text(
                         '°C',
-                        style: TextStyle(
+                        style: GoogleFonts.roboto(
                           fontSize: 20,
                           fontWeight: FontWeight.w400,
                         ),
@@ -337,18 +345,18 @@ class TomorrowWeatherDetail extends StatelessWidget {
             // const Spacer(),
             Column(
               mainAxisAlignment: MainAxisAlignment.start,
-              children: const [
-                Icon(
+              children: [
+                const Icon(
                   WeatherIcons.day_rain,
                   size: 60,
                   color: Colors.white,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 Text(
                   'Rainy',
-                  style: TextStyle(
+                  style: GoogleFonts.roboto(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                   ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:glassmorphism/glassmorphism.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:weather_app/screens/widgets/location.dart';
 import 'package:weather_app/screens/widgets/weather_detail_today.dart';
 import 'package:weather_icons/weather_icons.dart';
@@ -153,10 +154,17 @@ class _HomeState extends State<Home> {
                 gradient: LinearGradient(
                   begin: Alignment.bottomLeft,
                   end: Alignment.topRight,
-                  colors: [
-                    const Color(0xFF8F55D9).withOpacity(1),
-                    const Color(0xFFDC8B4B).withOpacity(1),
-                  ],
+                  colors: (int.parse(DateTime.now().hour.toString()) >= 20 &&
+                          int.parse(DateTime.now().hour.toString()) < 6)
+                      ? [
+                          const Color(0xFF071930).withOpacity(1),
+                          const Color(0xFF000B16).withOpacity(1),
+                        ]
+                      : [
+                          const Color(0xFF8F55D9).withOpacity(1),
+                          // const Color(0xFFD6C970).withOpacity(0.8),
+                          const Color(0xFFDC8B4B).withOpacity(1),
+                        ],
                 ),
               ),
             ),
@@ -172,21 +180,21 @@ class _HomeState extends State<Home> {
                       const SizedBox(
                         height: 20,
                       ),
-                      const Text(
+                      Text(
                         'Today',
-                        style: TextStyle(
-                          fontSize: 24,
+                        style: GoogleFonts.roboto(
                           fontWeight: FontWeight.w600,
+                          fontSize: 24,
                         ),
                       ),
                       const SizedBox(
                         height: 10,
                       ),
-                      const Text(
+                      Text(
                         'Tue, Dec 25',
-                        style: TextStyle(
-                          fontSize: 14,
+                        style: GoogleFonts.roboto(
                           fontWeight: FontWeight.w200,
+                          fontSize: 14,
                         ),
                       ),
                       const SizedBox(
@@ -227,9 +235,12 @@ class WholeDayWeatherWidget extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
+            Text(
               'Today',
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              style: GoogleFonts.roboto(
+                fontWeight: FontWeight.w600,
+                fontSize: 16,
+              ),
             ),
             TextButton(
               onPressed: () {
@@ -244,7 +255,7 @@ class WholeDayWeatherWidget extends StatelessWidget {
                 children: [
                   Text(
                     'Next 5 days',
-                    style: TextStyle(
+                    style: GoogleFonts.roboto(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
                       color: Colors.white.withOpacity(0.8),
@@ -334,7 +345,7 @@ class HourlyWeatherWidget extends StatelessWidget {
         children: [
           Text(
             time,
-            style: TextStyle(
+            style: GoogleFonts.roboto(
               fontSize: 16,
               fontWeight: FontWeight.w400,
               color: DateTime.now().hour.toString() == time.split(':')[0]
@@ -356,7 +367,7 @@ class HourlyWeatherWidget extends StatelessWidget {
                 child: Center(
                     child: Text(
                   temp,
-                  style: TextStyle(
+                  style: GoogleFonts.roboto(
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
                     color: DateTime.now().hour.toString() == time.split(':')[0]
@@ -370,7 +381,7 @@ class HourlyWeatherWidget extends StatelessWidget {
                 left: 60,
                 child: Text(
                   '°C',
-                  style: TextStyle(
+                  style: GoogleFonts.roboto(
                     fontSize: 10,
                     fontWeight: FontWeight.w400,
                     color: DateTime.now().hour.toString() == time.split(':')[0]

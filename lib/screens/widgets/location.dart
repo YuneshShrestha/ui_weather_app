@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Location extends StatefulWidget {
   const Location({super.key});
@@ -34,16 +35,16 @@ class _LocationState extends State<Location> {
                 child: RichText(
                   text: TextSpan(
                     text: value.split(',')[0],
-                    style: const TextStyle(
-                      fontSize: 18,
+                    style: GoogleFonts.roboto(
                       fontWeight: FontWeight.w600,
+                      fontSize: 18,
                     ),
                     children: [
                       TextSpan(
                         text: ', ${value.split(',')[1]}',
-                        style: const TextStyle(
-                          fontSize: 18,
+                        style: GoogleFonts.roboto(
                           fontWeight: FontWeight.w200,
+                          fontSize: 18,
                         ),
                       ),
                     ],

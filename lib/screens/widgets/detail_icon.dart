@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 class DetailIcon extends StatelessWidget {
   const DetailIcon({
     super.key,
@@ -21,9 +23,9 @@ class DetailIcon extends StatelessWidget {
         ),
         Text(
           text,
-          style: const TextStyle(
-            fontSize: 14,
+          style: GoogleFonts.roboto(
             fontWeight: FontWeight.w400,
+            fontSize: 14,
           ),
         ),
       ],
