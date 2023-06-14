@@ -55,7 +55,7 @@ class NextFiveDays extends StatelessWidget {
                 gradient: LinearGradient(
                   begin: Alignment.bottomLeft,
                   end: Alignment.topRight,
-                  colors: (int.parse(DateTime.now().hour.toString()) >= 19 &&
+                  colors: (int.parse(DateTime.now().hour.toString()) >= 19 ||
                           int.parse(DateTime.now().hour.toString()) < 6)
                       ? [
                           const Color(0xFF071930).withOpacity(1),
