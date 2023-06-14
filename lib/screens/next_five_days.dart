@@ -55,6 +55,7 @@ class NextFiveDays extends StatelessWidget {
                 gradient: LinearGradient(
                   begin: Alignment.bottomLeft,
                   end: Alignment.topRight,
+                  // Display dark color background from 7pm to 6am and light color background from 6am to 7pm
                   colors: (int.parse(DateTime.now().hour.toString()) >= 19 ||
                           int.parse(DateTime.now().hour.toString()) < 6)
                       ? [
